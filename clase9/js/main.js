@@ -80,5 +80,20 @@ if (campoEmail.value.includes("@") == false) {
     document.getElementById("emailHelp").className = "text-danger";    
 }
 
+let eMail = campoEmail.value;
+console.log("Tu eMail es :" + eMail);
+
+//Render de Productos
+const productos = [
+    {id: 1, nombre: "Gaseosa cola zero Coca Cola pet 2.25 lts", precio: 759, imagen: "https://carrefourar.vtexassets.com/arquivos/ids/320545-170-170?v=1781043717&width=170&height=170&aspect=true" },
+    {id: 2, nombre: "Gaseosa 7 Up lima limón 1.5 l.", precio: 323, imagen: "https://carrefourar.vtexassets.com/arquivos/ids/277290-170-170?v=1781043856&width=170&height=170&aspect=true" },
+    {id: 3, nombre: "Gaseosa Crush sin azúcar lima-limón 2.25 l", precio: 305, imagen: "https://carrefourar.vtexassets.com/arquivos/ids/302007-170-170?v=1781043722&width=170&height=170&aspect=true" },
+    {id: 4, nombre: "Gaseosa Crush sin azúcar naranja 2.25 l.", precio: 305, imagen: "https://carrefourar.vtexassets.com/arquivos/ids/302009-170-170?v=1781045754&width=170&height=170&aspect=true" }
+
+];
+
+console.log("Productos: " + productos);
+
+
 
 
