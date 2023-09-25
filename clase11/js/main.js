@@ -106,5 +106,85 @@ let divProductos = document.getElementById("contenido2");
 divProductos.innerHTML = mensajeHTML;
 
 //Falta el último ejemplo con Bootstrap, formularios, etc
+//Acá va eso mismo
+const calcularSueldo = () => {
+    let nombre = document.getElementById("nombre");
+    let nombreError = document.getElementById("nombreError");
+    let sueldoBruto = document.getElementById("sueldoBruto");
+    let sueldoBrutoError = document.getElementById("sueldoBrutoError");
+
+    if (nombre.value.trim().length == 0) {
+        nombreError.innerHTML = "Complete el campo Nombre";
+        nombreError.className = "text-danger";
+        return false;
+    }
+    else {
+        nombreError.innerHTML = "";
+    }
+
+    if (sueldoBruto.value.trim().length == 0) {
+        sueldoBrutoError.innerHTML = "Complete el campo Sueldo Bruto";
+        sueldoBrutoError.className = "text-danger";
+        return false;
+    }
+    else {
+        sueldoBrutoError.innerHTML = "";
+    }
+
+    let valorSueldoBruto = parseFloat(sueldoBruto.value);
+    
+
+    if (valorSueldoBruto < 0) {
+        sueldoBrutoError.innerHTML = "Debe ingresar un valor numérico positivo";
+        sueldoBrutoError.className = "text-danger";
+        return false;
+    }
+    else {
+        sueldoBrutoError.innerHTML = "";
+    }
+
+    const datosUsuario = {
+        nombreUsuario : nombre.value,
+        sueldoBruto : valorSueldoBruto
+    }
+
+    localStorage.setItem("datosUsuario", JSON.stringify(datosUsuario));
+
+    const datosUsuarioLS = JSON.parse(localStorage.getItem("datosUsuario"));
+
+    //Realizo los calculos del sueldo
+    let impuestoJubilacion = datosUsuarioLS.sueldoBruto * 0.11;
+    let impuestoObraSocial = datosUsuarioLS.sueldoBruto * 0.03;
+    let impuestoPami = datosUsuarioLS.sueldoBruto * 0.03;
+    let retenciones = impuestoJubilacion + impuestoObraSocial + impuestoPami;
+    let sueldoNeto = datosUsuarioLS.sueldoBruto - retenciones;
+
+    let contenidoHTML = `<h3> Calculo de Sueldo Neto </h3>
+    <table class="table">
+        <tr>
+            <td class="bg-primary-subtle">Sueldo Bruto: </td><td class="bg-primary-subtle text-end"><b>$${datosUsuarioLS.sueldoBruto}</b></td>
+        </tr>
+        <tr>
+            <td>Jubilacion (11%): </td><td class="text-end"><b>$${impuestoJubilacion}</b></td>
+        </tr>
+        <tr>
+            <td>Obra Social (3%): </td><td class="text-end"><b>$${impuestoObraSocial}</b></td>
+        </tr>
+        <tr>
+            <td>PAMI (3%): </td><td class="text-end"><b>$${impuestoPami}</b></td>
+        </tr>
+        <tr>
+            <td class="bg-primary-subtle">Sueldo Neto: </td><td class="bg-primary-subtle text-end"><b>$${sueldoNeto}</b></td>
+        </tr>
+    </t<ble>
+    `;
+
+    document.getElementById("resultado").innerHTML = contenidoHTML;
+
+
+    return true;
+}
+
+document.getElementById("btnCalcularSueldo").onclick = calcularSueldo;
 
 
