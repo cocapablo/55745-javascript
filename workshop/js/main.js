@@ -1,0 +1,5 @@
+
+
+guardarProductosLS(productos);
+
+renderProductos();
